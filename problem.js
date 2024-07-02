@@ -333,6 +333,61 @@ function twoSumII(numbers, target) {
     return []
 }
 
-const numbers1 = [2, 7, 11, 15];
-const target1 = 9;
-console.log(twoSumII(numbers1, target1)); 
+// const numbers1 = [2, 7, 11, 15];
+// const target1 = 9;
+// console.log(twoSumII(numbers1, target1)); 
+
+// Write a function that reverses a string. The input string is given as an array of characters s.
+
+// You must do this by modifying the input array in-place with O(1) extra memory.
+
+function reverseString(s) {
+    let left = 0, right = s.length - 1
+
+    while (left < right) {
+        [s[left], s[right]] = [s[right], s[left]]
+
+        left++
+        right --
+    }
+}
+
+// const s1 = ["h", "e", "l", "l", "o"];
+// reverseString(s1);
+// console.log(s1); 
+
+// Given a string s containing just the characters (, ), {, }, [ and ], determine if the input string is valid.
+
+// An input string is valid if:
+
+// Open brackets must be closed by the same type of brackets.
+// Open brackets must be closed in the correct order.
+
+function isValidParenthesis(s) {
+    const stack = []
+
+    const mapping = {
+        ')':'(',
+        '}': '{',
+        ']': '['
+    }
+
+    for(const char of s) {
+        if(char in mapping) {
+            const topElement = stack.length ? stack.pop() : '#'
+
+            if(mapping[char] !== topElement){
+                return false
+            }
+
+        } else {
+            stack.push(char)
+        }
+    }
+
+    return stack.length === 0
+
+}
+
+// const s2 = "()[]}";
+// console.log(isValidParenthesis(s2));

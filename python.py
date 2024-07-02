@@ -281,6 +281,52 @@ def two_sum_li(numbers, target):
             right -= 1
     return []
 
-numbers1 = [2, 7, 11, 15]
-target1 = 9
-print(two_sum_li(numbers1, target1))
+# numbers1 = [2, 7, 11, 15]
+# target1 = 9
+# print(two_sum_li(numbers1, target1))
+
+# Write a function that reverses a string. The input string is given as an array of characters s.
+
+# You must do this by modifying the input array in-place with O(1) extra memory.
+
+def reverse_string(s): 
+    left, right = 0, len(s) - 1
+    
+    while left < right: 
+        s[left], s[right] = s[right], s[left]
+        
+        left +=1
+        right -= 1
+        
+# s1 = ["h", "e", "l", "l", "o"]
+# reverse_string(s1)
+# print(s1)
+
+# Given a string s containing just the characters (, ), {, }, [ and ], determine if the input string is valid.
+
+# An input string is valid if:
+
+# Open brackets must be closed by the same type of brackets.
+# Open brackets must be closed in the correct order.
+
+def is_valid_parentheses(s: str) -> bool:
+    stack  = []
+    
+    mapping = {
+        ')':'(',
+        '}': '{',
+        ']': '['
+    }
+    
+    for char in s: 
+        if char in mapping: 
+            top_element = stack.pop() if stack else '#'
+            if mapping[char] != top_element: 
+                return False
+        else: 
+            stack.append(char)
+            
+    return not stack
+
+# s2 = "()[]}"
+# print(is_valid_parentheses(s2)) 

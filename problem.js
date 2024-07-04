@@ -391,3 +391,115 @@ function isValidParenthesis(s) {
 
 // const s2 = "()[]}";
 // console.log(isValidParenthesis(s2));
+
+
+
+// Problem 17: Merge Two Sorted Lists
+
+function ListNode(val, next){
+    this.val = val === undefined ? 0 : val
+    this.next = next === undefined ? null : next
+}
+
+function mergeTwoLists(l1,l2) {
+    const dummy = new ListNode()
+
+    let current = dummy
+
+    while(l1 !== null && l2 !== null) {
+        if(l1.val < l2.val) {
+            current.next = l1
+            l1 = l1.next
+        } else {
+            current.next = l2
+            l2 = l2.next
+        }
+        current = current.next
+    }
+
+    if(l1 !== null) {
+        current.next = l1
+    }
+    if(l2 !== null) {
+        current.next = l2
+    }
+
+    return dummy.next
+}
+
+function createLinkedList(arr) {
+    if(arr.length === 0) return null
+
+    const ahead  = new ListNode(arr[0])
+
+    let current = ahead
+
+    for(let i = 1; i < arr.length; i++) {
+        current.next = new ListNode(arr[i])
+        current = current.next
+    }
+    return ahead
+}
+
+function linkedListToArray(node){
+    const result = []
+
+    while(node !== null) {
+        result.push(node.val)
+        node = node.next
+    }
+
+    return result
+}
+
+// const list1 = createLinkedList([1, 2, 4]);
+// const list2 = createLinkedList([1, 3, 4]);
+// const mergedList = mergeTwoLists(list1, list2);
+// console.log(linkedListToArray(mergedList));
+
+// # Problem 18: Reverse Linked List
+function ListNode(val, next) {
+    this.val = (val===undefined ? 0 : val);
+    this.next = (next===undefined ? null : next);
+}
+
+
+function reverseList(head) {
+    let prev = null;
+    let current = head;
+    
+    while (current !== null) {
+        let nextNode = current.next;
+        current.next = prev;
+        prev = current;
+        current = nextNode;
+    }
+    
+    return prev;
+}
+
+function createLinkedList(arr) {
+    if (arr.length === 0) return null;
+    const head = new ListNode(arr[0]);
+    let current = head;
+    for (let i = 1; i < arr.length; i++) {
+        current.next = new ListNode(arr[i]);
+        current = current.next;
+    }
+    return head;
+}
+
+function linkedListToArray(node) {
+    const result = [];
+    while (node !== null) {
+        result.push(node.val);
+        node = node.next;
+    }
+    return result;
+}
+
+// const head = createLinkedList([1, 2, 3, 4, 5]);
+// const reversedList = reverseList(head);
+// console.log(linkedListToArray(reversedList)); 
+
+// console.log(head, reversedList);
